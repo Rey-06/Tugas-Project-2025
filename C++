@@ -1,0 +1,213 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Publikasi {
+    string judul;
+    string penulis;
+    int tahun;
+    int sitasi;
+};
+
+void swap(Publikasi &a, Publikasi &b) {
+    Publikasi temp = a;
+    a = b;
+    b = temp;
+}
+
+void sortingSitasiDesc(Publikasi *data, int n) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = 0; j < n-i-1; j++) {
+            if(data[j].sitasi < data[j+1].sitasi) {
+                swap(data[j], data[j+1]);
+            }
+        }
+    }
+}
+
+int main() {
+    const int totalData = 29; // jumlah total data yang tersedia
+    int jumlah;
+
+    cout << "Masukkan Jumlah Publikasi (maksimal " << totalData << "): ";
+    cin >> jumlah;
+
+    if (jumlah < 1 || jumlah > totalData) {
+        cout << "Input tidak valid! Jumlah data maksimal " << totalData << "." << endl;
+        return 0;
+    }
+
+    cin.ignore();
+
+    // Hardcode data publikasi
+    Publikasi data[totalData];
+
+    data[0].judul = "WhatsApp, viber and telegram: Which is the best for instant messaging?";
+    data[0].penulis = "Imam Much Ibnu Subroto";
+    data[0].tahun = 2016;
+    data[0].sitasi = 288;
+
+    data[1].judul = "Sistem Informasi Retribusi Pedagang Pasar Kabupaten Semarang";
+    data[1].penulis = "Imam Much Ibnu Subroto";
+    data[1].tahun = 2016;
+    data[1].sitasi = 15;
+
+    data[2].judul = "Expert system on soybean disease using knowledge representation method";
+    data[2].penulis = "Imam Much Ibnu Subroto";
+    data[2].tahun = 2017;
+    data[2].sitasi = 7;
+    
+    data[3].judul = "Sistem Pencarian E-Journal Menggunakan Metode Stopword Removal dan Stemming Berbasis Android";
+    data[3].penulis = "Imam Much Ibnu Subroto";
+    data[3].tahun = 2020;
+    data[3].sitasi = 17;
+    
+    data[4].judul = "Improving the classification performance on imbalanced data sets via new hybrid parameterisation model";
+    data[4].penulis = "Imam Much Ibnu Subroto";
+    data[4].tahun = 2021;
+    data[4].sitasi = 16;
+    
+    data[5].judul = "Average Hashing for Perceptual Image Similarity in Mobile Phone Application";
+    data[5].penulis = "Sam Farisa Chaerul Haviana";
+    data[5].tahun = 2016;
+    data[5].sitasi = 35;
+    
+    data[6].judul = "Implementasi MQTT untuk Pemantauan Suhu dan Kelembaban pada Laboratorium";
+    data[6].penulis = "Sam Farisa Chaerul Haviana";
+    data[6].tahun = 2018;
+    data[6].sitasi = 10;
+    
+    data[7].judul = "Implementasi Algoritma Cosine Similarity pada sistem arsip dokumen di Universitas Islam Sultan Agung";
+    data[7].penulis = "Sam Farisa Chaerul Haviana";
+    data[7].tahun = 2020;
+    data[7].sitasi = 18;
+    
+    data[8].judul = "Deep Learning Model for Sentiment Analysis on Short Informal Texts";
+    data[8].penulis = "Sam Farisa Chaerul Haviana";
+    data[8].tahun = 2022;
+    data[8].sitasi = 7;
+
+    data[9].judul = "Rancang Bangun Sistem Informasi Survey Pemasaran dan Penjualan Berbasis Object Oriented Programming";
+    data[9].penulis = "Sri Mulyono";
+    data[9].tahun = 2018;
+    data[9].sitasi = 248;
+    
+    data[10].judul = "Implementasi Metode Scrum Pada Pengembangan Aplikasi Delivery Order Berbasis Website";
+    data[10].penulis = "Sri Mulyono";
+    data[10].tahun = 2020;
+    data[10].sitasi = 90;
+    
+    data[11].judul = "Changes in demand and supply of the crude oil market during the COVID-19 pandemic and its effects on the natural gas market";
+    data[11].penulis = "Sri Mulyono";
+    data[11].tahun = 2021;
+    data[11].sitasi = 40;
+    
+    data[12].judul = "Smart Monitoring of Rice Logistic Employing Internet of Things Network";
+    data[12].penulis = "Moch Taufik";
+    data[12].tahun = 2018;
+    data[12].sitasi = 8;
+    
+    data[13].judul = "PRIORITAS PENGGUNAAN DANA DESA TAHUN 2021 DAN UPAYA REVITALISASI BUMDES (p. 55)";
+    data[13].penulis = "Moch Taufik";
+    data[13].tahun = 2020;
+    data[13].sitasi = 6;
+
+    data[14].judul = "Sistem pakar diagnosa penyakit ikan nila berbasis metode Bayes";
+    data[14].penulis = "Moch Taufik";
+    data[14].tahun = 2022;
+    data[14].sitasi = 3;
+    
+    data[15].judul = "Average hashing for perceptual image similarity in mobile phone application";
+    data[15].penulis = "Dedy Kurniadi";
+    data[15].tahun = 2016;
+    data[15].sitasi = 35;
+    
+    data[16].judul = "Sistem Pakar Menggunakan Metode Forward Chaining untuk Diagnosa Penyakit Tanaman Karet";
+    data[16].penulis = "Dedy Kurniadi";
+    data[16].tahun = 2020;
+    data[16].sitasi = 47;
+    
+    data[17].judul = "Fuzzy Implementation for Land Spatial Planning";
+    data[17].penulis = "Dedy Kurniadi";
+    data[17].tahun = 2021;
+    data[17].sitasi = 3;
+    
+    data[18].judul = "Pendampingan Pengembangan Teknologi Informasi pada UMKM Rangkul Semarang";
+    data[18].penulis = "Bagus Satrio Waluyo Poetro";
+    data[18].tahun = 2022;
+    data[18].sitasi = 7;
+    
+    data[19].judul = "Advancements in Agricultural Automation: SVM classifier with Hu moments for vegetable identification";
+    data[19].penulis = "Bagus Satrio Waluyo Poetro";
+    data[19].tahun = 2024;
+    data[19].sitasi = 14;
+    
+    data[20].judul = "Pembuatan dan Pendampingan Pengelolaan Website Sekolah KB-TK Hj. Isriati Baiturrahman 1 Semarang";
+    data[20].penulis = "Badie'ah";
+    data[20].tahun = 2022;
+    data[20].sitasi = 15;
+    
+    data[21].judul = "Metode Jaringan Syaraf Tiruan Untuk Prediksi Performa Mahasiswa Pada Pembelajaran Berbasis Problem Based Learning (PBL)";
+    data[21].penulis = "Badie'ah";
+    data[21].tahun = 2016;
+    data[21].sitasi = 24;
+    
+    data[22].judul = "Fuzzy tsukamoto implementation on internet of things to control flooding";
+    data[22].penulis = "Andi Riansyah";
+    data[22].tahun = 2020;
+    data[22].sitasi = 12;
+    
+    data[23].judul = "Applying fuzzy proportional integral derivative on internet of things for figs greenhouse";
+    data[23].penulis = "Andi Riansyah";
+    data[23].tahun = 2021;
+    data[23].sitasi = 18;
+    
+    data[24].judul = "The lateral control of autonomous vehicles: A review";
+    data[24].penulis = "Sri Arttini Dwi Prasetyowati";
+    data[24].tahun = 2019;
+    data[24].sitasi = 29;
+    
+    data[25].judul = "Artificial neural network algorithm for autonomous vehicle ultrasonic multi-sensor system";
+    data[25].penulis = "Sri Arttini Dwi Prasetyowati";
+    data[25].tahun = 2020;
+    data[25].sitasi = 20;
+    
+    data[26].judul = "Pengembangan Sistem Informasi Pengaduan Masyarakat Kabupaten Jepara Berbasis Web";
+    data[26].penulis = "Ida Widihastuti";
+    data[26].tahun = 2017;
+    data[26].sitasi = 26;
+    
+    data[27].judul = "Aplikasi interaktif pembelajaran aksara Jawa";
+    data[27].penulis = "Ida Widihastuti";
+    data[27].tahun = 2022;
+    data[27].sitasi = 5;
+    
+    data[28].judul = "Evaluasi Kapasitas AC Pada Gedung Fakultas Teknologi Industri Unissula Semarang";
+    data[28].penulis = "Ida Widihastuti";
+    data[28].tahun = 2022;
+    data[28].sitasi = 4;
+    
+    // Tampilkan data lengkap sesuai jumlah input
+    for (int i = 0; i < jumlah; i++) {
+        cout << "\nData Publikasi ke-" << i+1 << ":\n";
+        cout << "Judul    : " << data[i].judul << endl;
+        cout << "Penulis  : " << data[i].penulis << endl;
+        cout << "Tahun    : " << data[i].tahun << endl;
+        cout << "Sitasi   : " << data[i].sitasi << endl;
+    }
+
+    cout << "\n--- Data Sebelum Diurutkan ---\n";
+    for (int i = 0; i < jumlah; i++) {
+        cout << i+1 << ". " << data[i].judul << " - " << data[i].sitasi << " sitasi" << endl;
+    }
+
+    // Sorting tetap seluruh data
+    sortingSitasiDesc(data, totalData);
+
+    cout << "\n--- Data Setelah Diurutkan (Sitasi Desc) ---\n";
+    for (int i = 0; i < jumlah; i++) {
+        cout << i+1 << ". " << data[i].judul << " - " << data[i].sitasi << " sitasi" << endl;
+    }
+
+    return 0;
+}
